@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lily Austin | Podcast Producer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blush: #E8C4C4;
+            --peach: #F2D7C9;
+            --sage: #C5D5CB;
+            --cream: #FDF8F4;
+            --terracotta: #C9907D;
+            --warm-brown: #8B6E61;
+            --deep-sage: #7A9583;
+            --text-dark: #4A4A4A;
+            --text-light: #6B6B6B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, var(--cream), transparent);
+            transition: background 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(253, 248, 244, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 30px rgba(139, 110, 97, 0.08);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--warm-brown);
+            letter-spacing: 0.05em;
+        }
+
+        nav {
+            display: flex;
+            gap: 3rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.875rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--terracotta);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--terracotta);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 8rem;
+            position: relative;
+        }
+
+        /* Home Section */
+        #home {
+            background: var(--cream);
+        }
+
+        .home-content {
+            display: flex;
+            align-items: center;
+            gap: 6rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .profile-image-container {
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .profile-image-container::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px solid var(--blush);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .profile-image-container::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: -15px;
+            bottom: -15px;
+            background: linear-gradient(135deg, var(--peach) 0%, var(--sage) 100%);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .profile-image {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--cream);
+            box-shadow: 0 25px 60px rgba(139, 110, 97, 0.2);
+        }
+
+        .home-text {
+            flex: 1;
+        }
+
+        .home-text h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 500;
+            color: var(--warm-brown);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .home-text .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            font-weight: 300;
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        .home-text .subtitle strong {
+            color: var(--terracotta);
+            font-weight: 500;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--terracotta);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* Work Sections */
+        .work-section {
+            background: var(--cream);
+            position: relative;
+        }
+
+        .work-section:nth-child(odd) {
+            background: linear-gradient(135deg, var(--cream) 0%, #F9F3EF 100%);
+        }
+
+        .work-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--blush), transparent);
+        }
+
+        .work-content {
+            display: flex;
+            align-items: center;
+            gap: 5rem;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .podcast-player {
+            flex-shrink: 0;
+            width: 380px;
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 60px rgba(139, 110, 97, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .podcast-player::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--terracotta), var(--blush), var(--sage));
+        }
+
+        .podcast-cover {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--peach), var(--blush));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .podcast-cover:hover {
+            transform: scale(1.02);
+        }
+
+        .podcast-cover.monocle { background: linear-gradient(135deg, #E8D4C4, #D4C4B4); }
+        .podcast-cover.foreign { background: linear-gradient(135deg, #C5D5CB, #A5C5AB); }
+        .podcast-cover.explainer { background: linear-gradient(135deg, #B8C5D5, #98B5C5); }
+        .podcast-cover.streets { background: linear-gradient(135deg, #D4E4E8, #B4D4D8); }
+        .podcast-cover.groovy { background: linear-gradient(135deg, #E8C4D4, #D8B4C4); }
+
+        .podcast-cover-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--warm-brown);
+            text-align: center;
+            padding: 1rem;
+            z-index: 1;
+        }
+
+        .play-button {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .play-button svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--terracotta);
+            margin-left: 4px;
+        }
+
+        .play-button.playing svg {
+            margin-left: 0;
+        }
+
+        .podcast-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--warm-brown);
+            margin-bottom: 0.75rem;
+        }
+
+        .audio-progress {
+            width: 100%;
+            height: 4px;
+            background: var(--peach);
+            border-radius: 2px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .audio-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--terracotta), var(--blush));
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.1s linear;
+        }
+
+        .audio-time {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .work-description {
+            flex: 1;
+        }
+
+        .work-description h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 500;
+            color: var(--warm-brown);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .work-description p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+
+        .work-tags {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .work-tag {
+            padding: 0.5rem 1rem;
+            background: var(--sage);
+            color: var(--warm-brown);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(180deg, var(--cream) 0%, #F5EDE8 100%);
+        }
+
+        .contact-content {
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .contact-content h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 500;
+            color: var(--warm-brown);
+            margin-bottom: 1rem;
+        }
+
+        .contact-content .intro {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(139, 110, 97, 0.1);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            flex: 1;
+            text-align: left;
+        }
+
+        .form-group.full-width {
+            width: 100%;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        .form-group label .required {
+            color: var(--terracotta);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--peach);
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            color: var(--text-dark);
+            background: var(--cream);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--terracotta);
+            background: white;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            margin-top: 1.5rem;
+            padding: 1.25rem 3rem;
+            background: linear-gradient(135deg, var(--terracotta), var(--warm-brown));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(201, 144, 125, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(201, 144, 125, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            background: var(--cream);
+            border-top: 1px solid var(--peach);
+        }
+
+        footer p {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            section {
+                padding: 6rem 4rem;
+            }
+
+            .home-content,
+            .work-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .home-text h1 {
+                font-size: 3rem;
+            }
+
+            .home-text .subtitle {
+                max-width: 100%;
+            }
+
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            .podcast-player {
+                width: 100%;
+                max-width: 380px;
+            }
+
+            .work-description {
+                text-align: center;
+            }
+
+            .work-tags {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 2rem;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+            }
+
+            nav {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 0.75rem;
+            }
+
+            section {
+                padding: 5rem 2rem;
+            }
+
+            .home-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .work-description h2 {
+                font-size: 2rem;
+            }
+
+            .contact-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+        }
+
+        /* Decorative elements */
+        .decoration {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        #home .decoration-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--blush);
+            top: 10%;
+            right: 5%;
+            filter: blur(80px);
+        }
+
+        #home .decoration-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--sage);
+            bottom: 20%;
+            left: 10%;
+            filter: blur(60px);
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="logo">Lily Austin</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#work-1">Work</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="decoration decoration-1"></div>
+        <div class="decoration decoration-2"></div>
+        <div class="home-content">
+            <div class="profile-image-container">
+                <!-- Sostituisci con la foto di Lily -->
+                <img src="profile-photo.jpg" alt="Lily Austin" class="profile-image" onerror="this.style.background='linear-gradient(135deg, var(--blush), var(--peach))'; this.style.display='flex';">
+            </div>
+            <div class="home-text">
+                <h1>Lily Austin</h1>
+                <p class="subtitle">A <strong>London-based podcast producer</strong> specialising in conversation-led editorial audio across culture and current affairs.</p>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Work Section 1: Monocle on Fashion -->
+    <section id="work-1" class="work-section">
+        <div class="work-content">
+            <div class="podcast-player">
+                <div class="podcast-cover monocle" onclick="togglePlay('audio1', this)">
+                    <span class="podcast-cover-title">Monocle<br>on Fashion</span>
+                    <div class="play-button" id="playBtn1">
+                        <svg class="play-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                    </div>
+                </div>
+                <audio id="audio1" src="audio/monocle-on-fashion.mp3"></audio>
+                <h3 class="podcast-title">Monocle on Fashion</h3>
+                <div class="audio-progress" onclick="seekAudio(event, 'audio1', this)">
+                    <div class="audio-progress-bar" id="progress1"></div>
+                </div>
+                <div class="audio-time">
+                    <span id="currentTime1">0:00</span>
+                    <span id="duration1">0:00</span>
+                </div>
+            </div>
+            <div class="work-description">
+                <h2>Monocle on Fashion</h2>
+                <p>A deep dive into the world of fashion with industry insiders, designers, and tastemakers. Each episode explores the intersection of style, culture, and business, bringing listeners behind the scenes of the fashion world.</p>
+                <p>Produced for Monocle 24, this podcast combines editorial rigour with engaging storytelling to create compelling audio content.</p>
+                <div class="work-tags">
+                    <span class="work-tag">Fashion</span>
+                    <span class="work-tag">Culture</span>
+                    <span class="work-tag">Monocle 24</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section 2: The Foreign Desk -->
+    <section id="work-2" class="work-section">
+        <div class="work-content">
+            <div class="podcast-player">
+                <div class="podcast-cover foreign" onclick="togglePlay('audio2', this)">
+                    <span class="podcast-cover-title">The Foreign<br>Desk</span>
+                    <div class="play-button" id="playBtn2">
+                        <svg class="play-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                    </div>
+                </div>
+                <audio id="audio2" src="audio/the-foreign-desk.mp3"></audio>
+                <h3 class="podcast-title">The Foreign Desk</h3>
+                <div class="audio-progress" onclick="seekAudio(event, 'audio2', this)">
+                    <div class="audio-progress-bar" id="progress2"></div>
+                </div>
+                <div class="audio-time">
+                    <span id="currentTime2">0:00</span>
+                    <span id="duration2">0:00</span>
+                </div>
+            </div>
+            <div class="work-description">
+                <h2>The Foreign Desk</h2>
+                <p>An in-depth exploration of international affairs and global stories that matter. The Foreign Desk brings together expert correspondents and analysts to unpack complex geopolitical issues with clarity and insight.</p>
+                <p>From breaking news to long-form investigations, this podcast delivers thoughtful analysis on the stories shaping our world.</p>
+                <div class="work-tags">
+                    <span class="work-tag">Current Affairs</span>
+                    <span class="work-tag">Global</span>
+                    <span class="work-tag">Analysis</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section 3: The Foreign Desk Explainer -->
+    <section id="work-3" class="work-section">
+        <div class="work-content">
+            <div class="podcast-player">
+                <div class="podcast-cover explainer" onclick="togglePlay('audio3', this)">
+                    <span class="podcast-cover-title">The Foreign Desk<br>Explainer</span>
+                    <div class="play-button" id="playBtn3">
+                        <svg class="play-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                    </div>
+                </div>
+                <audio id="audio3" src="audio/the-foreign-desk-explainer.mp3"></audio>
+                <h3 class="podcast-title">The Foreign Desk Explainer</h3>
+                <div class="audio-progress" onclick="seekAudio(event, 'audio3', this)">
+                    <div class="audio-progress-bar" id="progress3"></div>
+                </div>
+                <div class="audio-time">
+                    <span id="currentTime3">0:00</span>
+                    <span id="duration3">0:00</span>
+                </div>
+            </div>
+            <div class="work-description">
+                <h2>The Foreign Desk Explainer</h2>
+                <p>Breaking down complex global stories into clear, digestible episodes. The Foreign Desk Explainer takes the biggest international news and provides the context you need to truly understand what's happening and why it matters.</p>
+                <p>Produced for Monocle 24, this companion series offers deep-dive explanations that go beyond the headlines.</p>
+                <div class="work-tags">
+                    <span class="work-tag">Current Affairs</span>
+                    <span class="work-tag">Explainer</span>
+                    <span class="work-tag">Monocle 24</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section 4: Streets In The Sky -->
+    <section id="work-4" class="work-section">
+        <div class="work-content">
+            <div class="podcast-player">
+                <div class="podcast-cover streets" onclick="togglePlay('audio4', this)">
+                    <span class="podcast-cover-title">Streets In<br>The Sky</span>
+                    <div class="play-button" id="playBtn4">
+                        <svg class="play-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                    </div>
+                </div>
+                <audio id="audio4" src="audio/streets-in-the-sky.mp3"></audio>
+                <h3 class="podcast-title">Streets In The Sky</h3>
+                <div class="audio-progress" onclick="seekAudio(event, 'audio4', this)">
+                    <div class="audio-progress-bar" id="progress4"></div>
+                </div>
+                <div class="audio-time">
+                    <span id="currentTime4">0:00</span>
+                    <span id="duration4">0:00</span>
+                </div>
+            </div>
+            <div class="work-description">
+                <h2>Streets In The Sky</h2>
+                <p>An intimate audio portrait of urban architecture and the communities that inhabit it. This podcast explores how our built environment shapes our lives, cultures, and connections.</p>
+                <p>Through conversations with residents, architects, and historians, Streets In The Sky reveals the human stories behind the concrete and glass.</p>
+                <div class="work-tags">
+                    <span class="work-tag">Architecture</span>
+                    <span class="work-tag">Urban Life</span>
+                    <span class="work-tag">Documentary</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section 5: Groovy Movies -->
+    <section id="work-5" class="work-section">
+        <div class="work-content">
+            <div class="podcast-player">
+                <div class="podcast-cover groovy" onclick="togglePlay('audio5', this)">
+                    <span class="podcast-cover-title">Groovy<br>Movies</span>
+                    <div class="play-button" id="playBtn5">
+                        <svg class="play-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                    </div>
+                </div>
+                <audio id="audio5" src="audio/groovy-movies.mp3"></audio>
+                <h3 class="podcast-title">Groovy Movies</h3>
+                <div class="audio-progress" onclick="seekAudio(event, 'audio5', this)">
+                    <div class="audio-progress-bar" id="progress5"></div>
+                </div>
+                <div class="audio-time">
+                    <span id="currentTime5">0:00</span>
+                    <span id="duration5">0:00</span>
+                </div>
+            </div>
+            <div class="work-description">
+                <h2>Groovy Movies</h2>
+                <p>A celebration of cinema in all its forms. Groovy Movies brings together film critics, directors, and enthusiasts to discuss the movies that move us, challenge us, and entertain us.</p>
+                <p>From blockbusters to arthouse gems, this podcast offers fresh perspectives on the art of filmmaking and the magic of the silver screen.</p>
+                <div class="work-tags">
+                    <span class="work-tag">Film</span>
+                    <span class="work-tag">Culture</span>
+                    <span class="work-tag">Entertainment</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-content">
+            <h2>Work With Me</h2>
+            <p class="intro">Interested in collaborating? I'd love to hear from you.</p>
+            <form class="contact-form" action="https://formspree.io/f/xwvpgowg" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name <span class="required">*</span></label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name <span class="required">*</span></label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                <div class="form-group full-width">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group full-width">
+                    <label for="message">Message <span class="required">*</span></label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <input type="hidden" name="_subject" value="New contact from lilyaustin.co.uk">
+                <input type="hidden" name="_replyto" value="">
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Lily Austin. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Audio player functionality
+        let currentlyPlaying = null;
+
+        function togglePlay(audioId, coverElement) {
+            const audio = document.getElementById(audioId);
+            const playBtn = coverElement.querySelector('.play-button');
+            const playIcon = playBtn.querySelector('svg');
+
+            // Stop any currently playing audio
+            if (currentlyPlaying && currentlyPlaying !== audio) {
+                currentlyPlaying.pause();
+                currentlyPlaying.currentTime = 0;
+                const prevBtn = document.querySelector('.play-button.playing');
+                if (prevBtn) {
+                    prevBtn.classList.remove('playing');
+                    prevBtn.innerHTML = '<svg class="play-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>';
+                }
+            }
+
+            if (audio.paused) {
+                audio.play();
+                playBtn.classList.add('playing');
+                playIcon.outerHTML = '<svg class="pause-icon" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+                currentlyPlaying = audio;
+            } else {
+                audio.pause();
+                playBtn.classList.remove('playing');
+                playBtn.innerHTML = '<svg class="play-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>';
+                currentlyPlaying = null;
+            }
+        }
+
+        // Update progress bar and time
+        document.querySelectorAll('audio').forEach((audio, index) => {
+            const num = index + 1;
+            const progressBar = document.getElementById(`progress${num}`);
+            const currentTimeEl = document.getElementById(`currentTime${num}`);
+            const durationEl = document.getElementById(`duration${num}`);
+
+            audio.addEventListener('loadedmetadata', () => {
+                durationEl.textContent = formatTime(audio.duration);
+            });
+
+            audio.addEventListener('timeupdate', () => {
+                const progress = (audio.currentTime / audio.duration) * 100;
+                progressBar.style.width = progress + '%';
+                currentTimeEl.textContent = formatTime(audio.currentTime);
+            });
+
+            audio.addEventListener('ended', () => {
+                const coverEl = audio.previousElementSibling;
+                const playBtn = coverEl.querySelector('.play-button');
+                playBtn.classList.remove('playing');
+                playBtn.innerHTML = '<svg class="play-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>';
+                progressBar.style.width = '0%';
+                currentlyPlaying = null;
+            });
+        });
+
+        function seekAudio(event, audioId, progressContainer) {
+            const audio = document.getElementById(audioId);
+            const rect = progressContainer.getBoundingClientRect();
+            const pos = (event.clientX - rect.left) / rect.width;
+            audio.currentTime = pos * audio.duration;
+        }
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
