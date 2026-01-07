@@ -637,9 +637,106 @@
             left: 10%;
             filter: blur(60px);
         }
+
+        /* Login Screen */
+        .login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .login-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(139, 110, 97, 0.15);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .login-box h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--warm-brown);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-box p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--peach);
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .login-box input:focus {
+            outline: none;
+            border-color: var(--terracotta);
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--terracotta), var(--warm-brown));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-box button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 144, 125, 0.4);
+        }
+
+        .error-msg {
+            color: #e74c3c;
+            margin-top: 1rem;
+            margin-bottom: 0 !important;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
+    <script>
+        const SP = "LilyAustin2025";
+    </script>
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-box">
+            <h1>Lily Austin</h1>
+            <p>Enter password to view portfolio</p>
+            <input type="password" id="passwordInput" placeholder="Password" onkeypress="if(event.key==='Enter')checkPassword()">
+            <button onclick="checkPassword()">Enter</button>
+            <p id="errorMsg" class="error-msg"></p>
+        </div>
+    </div>
+
+    <!-- Main Site (hidden until password correct) -->
+    <div id="mainSite" style="display: none;">
+    
     <header id="header">
         <div class="logo">Lily Austin</div>
         <nav>
@@ -655,8 +752,7 @@
         <div class="decoration decoration-2"></div>
         <div class="home-content">
             <div class="profile-image-container">
-                <!-- Sostituisci con la foto di Lily -->
-                <img src="profile-photo.jpg" alt="Lily Austin" class="profile-image" onerror="this.style.background='linear-gradient(135deg, var(--blush), var(--peach))'; this.style.display='flex';">
+                <img src="pics/lilyaustin_pic.JPG" alt="Lily Austin" class="profile-image" onerror="this.style.background='linear-gradient(135deg, var(--blush), var(--peach))'; this.style.display='flex';">
             </div>
             <div class="home-text">
                 <h1>Lily Austin</h1>
@@ -675,13 +771,12 @@
     <section id="work-1" class="work-section">
         <div class="work-content">
             <div class="podcast-player">
-                <div class="podcast-cover monocle" onclick="togglePlay('audio1', this)">
-                    <span class="podcast-cover-title">Monocle<br>on Fashion</span>
+                <div class="podcast-cover fashion" style="background-image: url('logos/fashion_logo.jpeg'); background-size: cover;" onclick="togglePlay('audio1', this)">
                     <div class="play-button" id="playBtn1">
                         <svg class="play-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
                     </div>
                 </div>
-                <audio id="audio1" src="audio/monocle-on-fashion.mp3"></audio>
+                <audio id="audio1" src="audio/MOF HIGHLIGHT.mp3"></audio>
                 <h3 class="podcast-title">Monocle on Fashion</h3>
                 <div class="audio-progress" onclick="seekAudio(event, 'audio1', this)">
                     <div class="audio-progress-bar" id="progress1"></div>
@@ -708,13 +803,12 @@
     <section id="work-2" class="work-section">
         <div class="work-content">
             <div class="podcast-player">
-                <div class="podcast-cover foreign" onclick="togglePlay('audio2', this)">
-                    <span class="podcast-cover-title">The Foreign<br>Desk</span>
+                <div class="podcast-cover monocle" style="background-image: url('logos/fd_logo.jpeg'); background-size: cover;" onclick="togglePlay('audio2', this)">
                     <div class="play-button" id="playBtn2">
                         <svg class="play-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
                     </div>
                 </div>
-                <audio id="audio2" src="audio/the-foreign-desk.mp3"></audio>
+                <audio id="audio2" src="audio/FD HIGHLIGHT 1.mp3"></audio>
                 <h3 class="podcast-title">The Foreign Desk</h3>
                 <div class="audio-progress" onclick="seekAudio(event, 'audio2', this)">
                     <div class="audio-progress-bar" id="progress2"></div>
@@ -741,13 +835,12 @@
     <section id="work-3" class="work-section">
         <div class="work-content">
             <div class="podcast-player">
-                <div class="podcast-cover explainer" onclick="togglePlay('audio3', this)">
-                    <span class="podcast-cover-title">The Foreign Desk<br>Explainer</span>
+                <div class="podcast-cover monocle" style="background-image: url('logos/fd_logo.jpeg'); background-size: cover;" onclick="togglePlay('audio3', this)">
                     <div class="play-button" id="playBtn3">
                         <svg class="play-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
                     </div>
                 </div>
-                <audio id="audio3" src="audio/the-foreign-desk-explainer.mp3"></audio>
+                <audio id="audio3" src="audio/FDX HIGHLIGHT.mp3"></audio>
                 <h3 class="podcast-title">The Foreign Desk Explainer</h3>
                 <div class="audio-progress" onclick="seekAudio(event, 'audio3', this)">
                     <div class="audio-progress-bar" id="progress3"></div>
@@ -774,13 +867,12 @@
     <section id="work-4" class="work-section">
         <div class="work-content">
             <div class="podcast-player">
-                <div class="podcast-cover streets" onclick="togglePlay('audio4', this)">
-                    <span class="podcast-cover-title">Streets In<br>The Sky</span>
+               <div class="podcast-cover monocle" style="background-image: url('logos/streetsinthesky_logo.png'); background-size: cover;" onclick="togglePlay('audio4', this)">
                     <div class="play-button" id="playBtn4">
                         <svg class="play-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
                     </div>
                 </div>
-                <audio id="audio4" src="audio/streets-in-the-sky.mp3"></audio>
+                <audio id="audio4" src="audio/STREETS IN THE SKY HIGHLIGHT.mp3"></audio>
                 <h3 class="podcast-title">Streets In The Sky</h3>
                 <div class="audio-progress" onclick="seekAudio(event, 'audio4', this)">
                     <div class="audio-progress-bar" id="progress4"></div>
@@ -807,13 +899,12 @@
     <section id="work-5" class="work-section">
         <div class="work-content">
             <div class="podcast-player">
-                <div class="podcast-cover groovy" onclick="togglePlay('audio5', this)">
-                    <span class="podcast-cover-title">Groovy<br>Movies</span>
+                <div class="podcast-cover monocle" style="background-image: url('logos/groovymovies_logo.png'); background-size: cover;" onclick="togglePlay('audio5', this)">
                     <div class="play-button" id="playBtn5">
                         <svg class="play-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
                     </div>
                 </div>
-                <audio id="audio5" src="audio/groovy-movies.mp3"></audio>
+                <audio id="audio5" src="audio/GM HIGHLIGHT.mp3"></audio>
                 <h3 class="podcast-title">Groovy Movies</h3>
                 <div class="audio-progress" onclick="seekAudio(event, 'audio5', this)">
                     <div class="audio-progress-bar" id="progress5"></div>
@@ -841,7 +932,7 @@
         <div class="contact-content">
             <h2>Work With Me</h2>
             <p class="intro">Interested in collaborating? I'd love to hear from you.</p>
-            <form class="contact-form" action="https://formspree.io/f/xwvpgowg" method="POST">
+            <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="firstName">First Name <span class="required">*</span></label>
@@ -870,6 +961,31 @@
     <footer>
         <p>&copy; 2025 Lily Austin. All rights reserved.</p>
     </footer>
+
+    </div> <!-- End of mainSite -->
+
+    <script>
+        // Password check function
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            const errorMsg = document.getElementById('errorMsg');
+            
+            if (input === SP) {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('mainSite').style.display = 'block';
+                sessionStorage.setItem('authenticated', 'true');
+            } else {
+                errorMsg.textContent = 'Incorrect password. Please try again.';
+                document.getElementById('passwordInput').value = '';
+            }
+        }
+
+        // Check if already authenticated this session
+        if (sessionStorage.getItem('authenticated') === 'true') {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('mainSite').style.display = 'block';
+        }
+    </script>
 
     <script>
         // Header scroll effect
