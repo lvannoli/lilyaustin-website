@@ -1,90 +1,111 @@
 # Lily Austin Portfolio Website
 
-Un portfolio elegante one-page con scroll snap per Lily Austin, podcast producer.
+An elegant one-page portfolio with scroll snap for Lily Austin, podcast producer.
 
-## 📁 Struttura File
-
+## 📁 File Structure
 ```
 lilyaustin-portfolio/
-├── index.html          # Il sito completo
-├── profile-photo.jpg   # La tua foto (da aggiungere)
-└── audio/              # Cartella per i file audio
-    ├── monocle-on-fashion.mp3
-    ├── the-foreign-desk.mp3
-    ├── the-foreign-desk-explainer.mp3
-    ├── streets-in-the-sky.mp3
-    └── groovy-movies.mp3
+├── index.html                      # Complete website
+├── pics/
+│   └── lilyaustin_pic.JPG          # Profile photo
+├── logos/                          # Podcast cover images
+│   ├── fashion_logo.jpeg
+│   ├── fd_logo.jpeg
+│   ├── streetsinthesky_logo.png
+│   └── groovymovies_logo.png
+└── audio/                          # Audio highlight clips
+    ├── MOF HIGHLIGHT.mp3
+    ├── FD HIGHLIGHT 1.mp3
+    ├── FDX HIGHLIGHT.mp3
+    ├── STREETS IN THE SKY HIGHLIGHT.mp3
+    └── GM HIGHLIGHT.mp3
 ```
 
-## 🚀 Come Configurare
+## 🔐 Password Protection
 
-### 1. Formspree
-Per far funzionare il form di contatto:
+The site is protected with a JavaScript password. To change the password:
 
-1. Vai su [Formspree](https://formspree.io) e accedi al tuo account
-2. Crea un nuovo form o usa uno esistente
-3. Copia l'endpoint (es: `https://formspree.io/f/xyzabcde`)
-4. Nel file `index.html`, cerca questa riga (circa riga 450):
-   ```html
+1. Open `index.html`
+2. Find this line near the top:
+```javascript
+   const SP = "LilyAustin2025";
+```
+3. Replace `"LilyAustin2025"` with your new password
+
+## 🚀 Hosting Setup
+
+The site is hosted on **Netlify** with the domain managed through **GoDaddy**.
+
+### Updating the Site
+1. Make changes to your local files
+2. Test locally by opening `index.html` in your browser
+3. Go to [Netlify](https://app.netlify.com) → your site → **Deploys**
+4. Drag and drop the entire folder to upload
+
+### DNS Settings (GoDaddy)
+| Type | Name | Value |
+|------|------|-------|
+| A | @ | 75.2.60.5 |
+| CNAME | www | capable-biscuit-c1eeb2.netlify.app |
+
+## 📧 Contact Form (Formspree)
+
+To configure the contact form:
+
+1. Go to [Formspree](https://formspree.io) and log in
+2. Create a new form or use an existing one
+3. Copy the endpoint (e.g., `https://formspree.io/f/xyzabcde`)
+4. In `index.html`, find this line:
+```html
    <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-   ```
-5. Sostituisci `YOUR_FORM_ID` con il tuo ID form
-6. Nelle impostazioni di Formspree, configura l'email di destinazione come `lilyaustinuk@gmail.com`
+```
+5. Replace `YOUR_FORM_ID` with your form ID
+6. In Formspree settings, set destination email to `lilyaustinuk@gmail.com`
 
-### 2. Foto Profilo
-1. Prepara una foto quadrata di almeno 640x640 pixel
-2. Rinominala `profile-photo.jpg`
-3. Mettila nella stessa cartella di `index.html`
+## 🎨 Colour Palette
 
-### 3. File Audio
-1. Crea una cartella chiamata `audio` nella stessa directory di `index.html`
-2. Aggiungi i tuoi file MP3 con questi nomi esatti:
-   - `monocle-on-fashion.mp3`
-   - `the-foreign-desk.mp3`
-   - `the-foreign-desk-explainer.mp3`
-   - `streets-in-the-sky.mp3`
-   - `groovy-movies.mp3`
+Chosen to complement red hair and fair skin:
 
-### 4. Upload su Hosting
-Carica tutti i file sul tuo hosting collegato a `lilyaustin.co.uk`
+| Colour | Hex | Usage |
+|--------|-----|-------|
+| Blush | `#E8C4C4` | Accents, decorations |
+| Peach | `#F2D7C9` | Borders, hover states |
+| Sage | `#C5D5CB` | Tags, secondary elements |
+| Cream | `#FDF8F4` | Main background |
+| Terracotta | `#C9907D` | Primary accent, CTA |
+| Warm Brown | `#8B6E61` | Headings, important text |
 
-## 🎨 Palette Colori
+## ✏️ Customisations
 
-La palette è stata scelta per complementare capelli rossi e pelle chiara:
+### Editing Podcast Descriptions
+Search for `<div class="work-description">` sections in the HTML to modify text.
 
-| Colore | Hex | Uso |
-|--------|-----|-----|
-| Blush | `#E8C4C4` | Accenti, decorazioni |
-| Peach | `#F2D7C9` | Bordi, hover |
-| Sage | `#C5D5CB` | Tag, elementi secondari |
-| Cream | `#FDF8F4` | Sfondo principale |
-| Terracotta | `#C9907D` | Accent principale, CTA |
-| Warm Brown | `#8B6E61` | Titoli, testo importante |
+### Changing the Profile Photo
+Replace `pics/lilyaustin_pic.JPG` with a new image (square, at least 640x640px).
 
-## ✏️ Personalizzazioni
+### Adjusting Photo Crop Position
+Find in CSS:
+```css
+object-position: center 20%;
+```
+Change `20%` to adjust vertical position (0% = top, 50% = centre, 100% = bottom).
 
-### Modificare le descrizioni dei podcast
-Cerca nel file HTML le sezioni `<div class="work-description">` per ciascun podcast e modifica il testo.
-
-### Aggiungere link social
-Puoi aggiungere icone social nell'header o nel footer modificando l'HTML.
-
-### Cambiare i colori
-I colori sono definiti come CSS variables all'inizio del file (`:root`). Modificali per cambiare l'intera palette.
+### Changing Colours
+Colours are defined as CSS variables at the top of the file (`:root`). Modify them to change the entire palette.
 
 ## 📱 Responsive
 
-Il sito è completamente responsive e funziona su:
+The site is fully responsive and works on:
 - Desktop
 - Tablet
 - Mobile
 
-## 🔧 Requisiti Tecnici
+## 🔧 Technical Requirements
 
-- Hosting con supporto per file statici
-- Nessun database richiesto
-- Nessuna dipendenza esterna (tranne Google Fonts)
+- Static file hosting (Netlify)
+- No database required
+- No external dependencies (except Google Fonts)
 
 ---
 
-Creato con ❤️ per Lily Austin
+Made with ❤️ for Lily Austin

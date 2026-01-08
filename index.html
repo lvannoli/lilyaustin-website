@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Site authorship -->
+    <meta name="author" content="Leonardo Vannoli" />
+    <meta name="creator" content="Leonardo Vannoli" />
+    <meta name="designer" content="Leonardo Vannoli" />
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lily Austin | Podcast Producer</title>
@@ -32,7 +37,6 @@
         }
 
         body {
-            /* font-family: 'Outfit', sans-serif; */
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.2rem;
             background-color: var(--cream);
@@ -107,13 +111,13 @@
 
         /* Sections */
         section {
-            min-height: 100vh;
+            min-height: 70vh;
             scroll-snap-align: start;
             scroll-snap-stop: always;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 6rem 8rem;
+            padding: 4rem 8rem; 
             position: relative;
         }
 
@@ -240,16 +244,6 @@
             background: linear-gradient(135deg, var(--cream) 0%, #F9F3EF 100%);
         }
 
-        .work-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--blush), transparent);
-        }
-
         .work-content {
             display: flex;
             align-items: center;
@@ -260,23 +254,13 @@
 
         .podcast-player {
             flex-shrink: 0;
-            width: 380px;
+            width: 330px;
             background: white;
             border-radius: 24px;
             padding: 2.5rem;
             box-shadow: 0 20px 60px rgba(139, 110, 97, 0.12);
             position: relative;
             overflow: hidden;
-        }
-
-        .podcast-player::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--terracotta), var(--blush), var(--sage));
         }
 
         .podcast-cover {
@@ -504,7 +488,6 @@
             color: white;
             border: none;
             border-radius: 50px;
-            /* font-family: 'Outfit', sans-serif; */
             font-family: 'Cormorant Garamond', serif;
             font-size: 1rem;
             font-weight: 500;
@@ -683,7 +666,6 @@
             padding: 1rem 1.25rem;
             border: 2px solid var(--peach);
             border-radius: 12px;
-            /* font-family: 'Outfit', sans-serif; */
             font-family: 'Cormorant Garamond', serif;
             font-size: 1rem;
             text-align: center;
@@ -703,7 +685,6 @@
             color: white;
             border: none;
             border-radius: 50px;
-            /* font-family: 'Outfit', sans-serif; */
             font-family: 'Cormorant Garamond', serif;
             font-size: 1rem;
             font-weight: 500;
@@ -726,7 +707,7 @@
 </head>
 <body>
     <script>
-        const SP = "LilyAustin2025";
+        const SP = "reverb2026";
     </script>
 
     <!-- Login Screen -->
@@ -763,10 +744,12 @@
             <div class="home-text">
                 <h1>Lily Austin</h1>
                 <p class="subtitle">A <strong>London-based podcast producer</strong> specialising in conversation-led editorial audio across culture and current affairs.</p>
+                <a target="_blank" class="work-tag" style="display: inline-block; margin-top: 1.5rem; text-decoration: none;">lilyaustinuk@gmail.com</a>
+                <a href="https://www.linkedin.com/in/lilyaustin/" target="_blank" class="work-tag" style="display: inline-block; margin-top: 1.5rem; text-decoration: none;">LinkedIn</a>
             </div>
         </div>
         <div class="scroll-indicator">
-            <span>Scroll down for the portfolio</span>
+            <span>Scroll down to portfolio</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 5v14M5 12l7 7 7-7"/>
             </svg>
@@ -795,11 +778,9 @@
             <div class="work-description">
                 <h2>Monocle on Fashion - Producer</h2>
                 <p>Weekly podcast featuring interviews with leading designers and industry figures, alongside fashion news coverage from the Monocle team.</p>
-                <p>This clip highlights the show’s topical agenda and editorial voice.</p>
+                <!-- <p> <i>This clip highlights the show’s topical agenda and editorial voice.</i></p> -->
                 <div class="work-tags">
-                    <span class="work-tag">Fashion</span>
-                    <span class="work-tag">Culture</span>
-                    <span class="work-tag">Monocle Radio</span>
+                    <a href="https://monocle.com/radio/shows/monocle-on-fashion/039/" target="_blank" class="work-tag" style="text-decoration: none;">Listen to full episode</a>
                 </div>
             </div>
         </div>
@@ -827,11 +808,9 @@
             <div class="work-description">
                 <h2>The Foreign Desk - Co-producer</h2>
                 <p>Weekly geopolitics podcast structured around three expert guests offering distinct perspectives on a single global issue.</p>
-                <p>This clip highlights the show’s clear structure, tonal balance and approach to making complex stories accessible.</p>
+                <!-- <p><i>This clip highlights the show’s clear structure, tonal balance and approach to making complex stories accessible.</i></p> -->
                 <div class="work-tags">
-                    <span class="work-tag">Current Affairs</span>
-                    <span class="work-tag">Global</span>
-                    <span class="work-tag">Monocle Radio</span>
+                    <a href="https://monocle.com/radio/shows/the-foreign-desk/617/" target="_blank" class="work-tag" style="text-decoration: none;">Listen to full episode</a>
                 </div>
             </div>
         </div>
@@ -859,11 +838,9 @@
             <div class="work-description">
                 <h2>The Foreign Desk Explainer - Producer</h2>
                 <p>Weekly sister programme offering concise explanations of major global stories, led by Andrew Mueller’s distinctive, wry voice.</p>
-                <p>This clip highlights the show’s editorial clarity, sound design and humour.</p>
+                <!-- <p><i>This clip highlights the show’s editorial clarity, sound design and humour.</i></p> -->
                 <div class="work-tags">
-                    <span class="work-tag">Current Affairs</span>
-                    <span class="work-tag">Global Explainer</span>
-                    <span class="work-tag">Monocle Radio</span>
+                    <a href="https://monocle.com/radio/shows/the-foreign-desk/627/" target="_blank" class="work-tag" style="text-decoration: none;">Listen to full episode</a>
                 </div>
             </div>
         </div>
@@ -891,11 +868,9 @@
             <div class="work-description">
                 <h2>Streets in the sky - Producer</h2>
                 <p>Three-part limited series for Cambridge Public Health exploring the health impacts of social housing on residents.</p>
-                <p>This clip highlights narrative storytelling and on-location recording.</p>
+                <!-- <p><i>This clip highlights narrative storytelling and on-location recording.</i></p> -->
                 <div class="work-tags">
-                    <span class="work-tag">Architecture</span>
-                    <span class="work-tag">Cambridge</span>
-                    <span class="work-tag">Documentary</span>
+                    <a href="https://podcasts.apple.com/gb/podcast/londons-doddington-estate/id1808968649?i=1000705218561" target="_blank" class="work-tag" style="text-decoration: none;">Listen to full episode</a>
                 </div>
             </div>
         </div>
@@ -923,11 +898,12 @@
             <div class="work-description">
                 <h2>Groovy Movies - Co-host & Producer</h2>
                 <p>Weekly film and culture podcast structured around industry news, discussion of new releases, and a cinema recommendation to close.</p>
-                <p>This clip highlights informed, well-researched conversation in an accessible, conversational style.</p>
+                <!-- <p><i>This clip highlights informed, well-researched conversation in an accessible, conversational style.</i></p> -->
                 <div class="work-tags">
-                    <span class="work-tag">Film</span>
-                    <span class="work-tag">Culture</span>
-                    <span class="work-tag">Entertainment</span>
+                    <a href="https://podcasts.apple.com/gb/podcast/jennifer-lawrence-in-die-my-love-the-modern-melodrama/id1635704814?i=1000736219927" target="_blank" class="work-tag" style="text-decoration: none;">Listen to full episode</a>
+                    <a href="https://www.youtube.com/@groovymoviespod" target="_blank" class="work-tag" style="text-decoration: none;">YouTube</a>
+                    <a href="https://www.instagram.com/groovymoviespod" target="_blank" class="work-tag" style="text-decoration: none;">Instagram</a>
+                    <a href="https://www.tiktok.com/@groovymoviespod" target="_blank" class="work-tag" style="text-decoration: none;">TikTok</a>
                 </div>
             </div>
         </div>
@@ -936,9 +912,8 @@
     <!-- Contact Section -->
     <section id="contact">
         <div class="contact-content">
-            <h2>Work With Me</h2>
-            <p class="intro">Interested in collaborating? I'd love to hear from you.</p>
-            <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <h2>Get in touch</h2>
+            <form class="contact-form" action="https://formspree.io/f/xwvpgowg" method="POST">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="firstName">First Name <span class="required">*</span></label>
